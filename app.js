@@ -42,6 +42,24 @@ function fetchPage(id){
 // 先用永義的公開 JSON 介面，失敗再改讀物件頁面
 function fetchCase(id){return fetchApi(id).catch(function(e){console.warn('api',e);return fetchPage(id)})}
 
+// 圖片先用 fetch 下載成 blob（有時伺服器回傳錯誤的 Content-Type，直接放 <img> 會讀不出來）
+function toBlobUrl(u){
+  if(!u)return Promise.resolve('');
+  // 改走 cloudfps.hfcdn.com（同一圖片服務），避免瀏覽器把請求併到 www.ycut.com.tw 的連線而拿到網頁
+  var alt=u.replace('//cloudfps.ycut.com.tw/','//cloudfps.hfcdn.com/');
+  return fetchImg(alt).catch(function(){return alt!==u?fetchImg(u):Promise.reject()}).catch(function(e){console.warn(e);return ''});
+}
+function fetchImg(u){
+  return fetch(u,{mode:'cors',credentials:'omit',referrerPolicy:'no-referrer'})
+  .then(function(r){if(!r.ok)throw new Error('img '+r.status);return r.arrayBuffer()})
+  .then(function(buf){
+    var b=new Uint8Array(buf.slice(0,4)),type='image/jpeg';
+    if(b[0]===0x89&&b[1]===0x50)type='image/png';else if(b[0]===0x47&&b[1]===0x49)type='image/gif';else if(b[0]===0x52&&b[1]===0x49)type='image/webp';
+    else if(!(b[0]===0xff&&b[1]===0xd8))throw new Error('not image');
+    return URL.createObjectURL(new Blob([buf],{type:type}));
+  });
+}
+
 // 網站沒給地圖時，用 OpenStreetMap 圖磚在瀏覽器裡拼一張位置圖
 function osmMap(lat,lng){
   return new Promise(function(resolve){
@@ -229,8 +247,11 @@ function load(input){
   $('#go').disabled=true;
   fetchCase(id).then(function(d){
     var f=mapFields(d);
-    if(f.mapUrl)return f;
-    return osmMap(+d.googleMapLati,+d.googleMapLongi).then(function(u){f.mapUrl=u;return f});
+    return Promise.all([toBlobUrl(f.mapUrl),toBlobUrl(f.planUrl)]).then(function(r){
+      f.planUrl=r[1];
+      if(r[0]){f.mapUrl=r[0];return f}
+      return osmMap(+d.googleMapLati,+d.googleMapLongi).then(function(u){f.mapUrl=u;return f});
+    });
   }).then(function(f){
     render(f);
     status('完成！可以存成圖片或 PDF。');
