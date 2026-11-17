@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>物件售資一鍵產生｜翔買鶴厝｜曾義翔</title>
+<meta name="description" content="貼上物件分享連結，馬上產生一頁式物件售資，可下載圖片或 PDF。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+<header class="hero no-print">
+  <div class="brand-top">翔買鶴厝｜曾義翔</div>
+  <h1>物件售資一鍵產生</h1>
+  <p class="sub">貼上物件分享連結（網址含 ycut.com.tw），馬上整理成一頁售資，可存成圖片或 PDF。</p>
+  <form id="form">
+    <input id="url" type="url" inputmode="url" placeholder="在這裡貼上物件連結" autocomplete="off">
+    <button type="submit" id="go">產生售資</button>
+  </form>
+  <p id="status" class="status" role="status"></p>
+  <div class="actions" id="actions" hidden>
+    <button id="png" type="button">存成圖片</button>
+    <button id="pdf" type="button">存成 PDF</button>
+    <button id="edit" type="button" class="ghost">修改內容</button>
+  </div>
+  <p class="hint" id="edithint" hidden>修改模式：點表格任一格就能改字；點地圖或格局圖可換成自己的照片。改好再按「存成圖片」或「存成 PDF」。</p>
+</header>
+<main id="stage" class="no-print-bg"><div id="scaler"></div></main>
+<section class="cta no-print">
+  <a href="https://line.me/R/ti/p/@825gowqf" target="_blank" rel="noopener">
+    <span class="q">想看這一區近半年的成交價？</span>
+    <span class="a">LINE@ @825gowqf 傳『區名』給我</span>
+  </a>
+  <p class="note">資料取自物件公開頁面，實際內容以現場看屋及產權資料為準。</p>
+</section>
+<input type="file" id="imgfile" accept="image/*" hidden>
+<script src="app.js"></script>
+</body>
+</html>
