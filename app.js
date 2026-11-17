@@ -151,6 +151,15 @@ function render(f){
    '<div class="line">'+CTA_Q+'<br>'+CTA_A+'<small>'+LINE_URL.replace('https://','')+'</small></div></div>'+
   '</div>';
   $('#scaler').innerHTML=h;
+  // 圖片載入失敗：重試一次，仍失敗就顯示「暫未提供」
+  $('#scaler').querySelectorAll('.pic img').forEach(function(img){
+    img.onerror=function(){
+      if(!img.dataset.retry){img.dataset.retry='1';var s=img.src;img.src=s+(s.indexOf('?')<0?'?':'&')+'r='+Date.now();return}
+      var box=img.parentNode, isMap=box.classList.contains('map');
+      var pin=box.querySelector('.pin');if(pin)pin.remove();
+      img.outerHTML='<span class="ph">'+(isMap?'位置圖':'格局圖')+'暫未提供<em class="edit-only">（點這裡上傳）</em></span>';
+    };
+  });
   setEditing(editing);
   fit();
   $('#actions').hidden=false;
