@@ -147,7 +147,7 @@ function render(f){
    '<div class="pics"><div class="pic map" data-img="mapUrl"><span class="tag">位置圖</span>'+mapImg+'</div>'+
    '<div class="pic plan" data-img="planUrl"><span class="tag">格局圖</span>'+planImg+'</div></div>'+
    '<div class="caption"><span>位置為示意，實際以現場為準。</span><span>本格局圖僅供參考使用，仍應以現場看屋結果為準。</span></div>'+
-   '<div class="foot"><div><div class="brand">翔買鶴厝｜曾義翔</div><div class="co" data-k="store" contenteditable="false">'+esc(f.store)+'</div></div>'+
+   '<div class="foot"><div><div class="brand">經紀業</div><div class="co" data-k="store" contenteditable="false">'+esc(f.store)+'</div></div>'+
    '<div class="line">'+CTA_Q+'<br>'+CTA_A+'<small>'+LINE_URL.replace('https://','')+'</small></div></div>'+
   '</div>';
   $('#scaler').innerHTML=h;

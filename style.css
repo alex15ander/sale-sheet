@@ -52,10 +52,10 @@ table.grid{width:100%;border-collapse:collapse;table-layout:fixed;font-size:12.5
 .caption span{flex:1}
 .caption span:last-child{text-align:right}
 .foot{margin-top:8px;padding-top:6px;border-top:1px solid #bcccdc;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#334e68}
-.foot .brand{font-weight:700;font-size:14px;color:#1f3a5f}
+.foot .brand{font-weight:700;font-size:12px;color:#1f3a5f}
 .foot .line{font-weight:700;color:#06c755;text-align:right;line-height:1.4}
 .foot .line small{display:block;font-weight:500;color:#334e68;font-size:11px}
-.foot .co{font-size:11px;color:#627d98}
+.foot .co{font-size:12px;color:#334e68}
 .exporting .editing [contenteditable="true"]:hover,.exporting [contenteditable="true"]:focus{background:transparent}
 @media print{
   @page{size:A4;margin:0}
