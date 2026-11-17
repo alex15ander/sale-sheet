@@ -247,7 +247,7 @@ document.addEventListener('click',function(e){if(e.target.classList&&e.target.cl
 
 function waitImages(root){
   return Promise.all(Array.prototype.map.call(root.querySelectorAll('img'),function(img){
-    return img.complete?Promise.resolve():new Promise(function(r){img.onload=img.onerror=r});
+    return img.complete?Promise.resolve():new Promise(function(r){img.addEventListener('load',r);img.addEventListener('error',function(){setTimeout(r,3000)});setTimeout(r,15000)});
   }));
 }
 function snapshot(){
