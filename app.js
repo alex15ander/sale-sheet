@@ -2,8 +2,8 @@
 'use strict';
 var $=function(s){return document.querySelector(s)};
 var LINE_URL='https://line.me/R/ti/p/@825gowqf';
-var CTA_Q='想看這一區近半年的成交價？';
-var CTA_A='LINE@ @825gowqf 傳『區名』給我';
+var CTA_Q='想知道這間收租划不划算？';
+var CTA_A='LINE@ @825gowqf 傳『投報』給我';
 var current=null, editing=false;
 
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}

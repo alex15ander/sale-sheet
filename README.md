@@ -7,4 +7,4 @@
 - 位置圖：優先用物件頁提供的靜態地圖；沒有時以 OpenStreetMap 圖磚拼圖。
 - 純靜態網站，部署在 GitHub Pages，不需要伺服器。
 
-想看這一區近半年的成交價？LINE@ @825gowqf 傳『區名』給我 → https://line.me/R/ti/p/@825gowqf
+想知道這間收租划不划算？LINE@ @825gowqf 傳『投報』給我 → https://line.me/R/ti/p/@825gowqf
